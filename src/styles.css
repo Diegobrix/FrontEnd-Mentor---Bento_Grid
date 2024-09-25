@@ -1,3 +1,4 @@
+/* Configs and Reset */
 @font-face {
    font-family: "DM Sans";
    src: url("../assets/fonts/DMSans-VariableFont_opsz\,wght.ttf");
@@ -19,7 +20,8 @@
    
    /* Neutral Colours */
    --neutral-100: #fff;
-   --neutral-200: hsl(0 0% 7%);
+   --neutral-200: hsl(0 0% 96%);
+   --neutral-300: hsl(0 0% 7%);
 
    /* Typography */
    --fw-100: 400;
@@ -27,7 +29,6 @@
 
    font-family: "DM Sans", sans-serif;
    font-size: 1.12rem;
-   font-weight: var(--fw-100);
 }
 
 *,
@@ -38,14 +39,119 @@
    margin: 0;
    padding: 0;
    box-sizing: inherit;
+   color: var(--neutral-300);
+   font-weight: var(--fw-100);
 }
 
 body {
    box-sizing: border-box;
+   background-color: var(--neutral-200);
 }
 
 figure > img {
    width: 100%;
    height: 100%;
 }
+/*=*/
 
+/* Generic Styles */
+
+.bento-container {
+   --rows: 1fr;
+   --padding: 1rem;
+   --gap: 2rem;
+
+   display: grid;
+   grid-template-columns: var(--rows);
+   grid-auto-flow: row;
+   gap: var(--gap);
+
+   padding: calc(var(--padding) * 2) var(--padding);
+}
+
+.bento__wrapper {
+   border-radius: 10px;
+   background-color: var(--bg-colour);
+
+   padding: 1rem;
+}
+
+.bento-wrapper__tooltip {
+   display: block;
+   color: var(--neutral-300);
+}
+
+.bento-wrapper__title {
+   --colour: var(--neutral-300);
+   --fs: 1.4rem;
+   
+   color: var(--colour);
+   font-size: var(--fs);
+   font-weight: var(--fw-200);
+   margin-block: .5rem;
+
+   &:where(h1, .light-title) {
+      --colour: var(--neutral-200);
+   }
+}
+
+.overflow-figure {
+   position: relative;
+}
+
+.text-center {
+   text-align: center;
+}
+
+.center-figure {
+   margin-block: 1rem;
+}
+
+/*=*/
+
+.bento__wrapper h1 {
+   color: var(--neutral-100);
+   text-align: center;
+   font-size: 2rem;
+
+   & .color_span {
+      color: var(--primary-200);
+   }
+   & .style_span {
+      color: inherit;
+      font-style: italic;
+   }
+}
+
+.main-item {
+   padding: 2rem;
+}
+
+.main-item .bento-wrapper__tooltip {
+   color: var(--primary-100);
+}
+
+.main-item figure {
+   display: grid;
+   place-items: center;
+   margin-block: 1rem .5rem;
+
+   & img {
+      max-width: 70%;
+   }
+}
+
+.bento__wrapper:has(.bottom-overflow) {
+   aspect-ratio: 16/12;
+   overflow: hidden;
+
+   & figure {
+      top: .5rem;
+      width: 70%;
+   }
+}
+
+.social-media__wrapper .bento-wrapper__tooltip {
+   font-size: .9rem;
+   font-weight: var(--fw-200);
+}
