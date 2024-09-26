@@ -52,6 +52,10 @@ figure > img {
    width: 100%;
    height: 100%;
 }
+
+span:not(:where(h1, h2, p, span)>span) {
+   display: block;
+}
 /*=*/
 
 /* Generic Styles */
@@ -103,8 +107,17 @@ figure > img {
    text-align: center;
 }
 
+.variable-element {
+   --width: 70%;
+   max-width: var(--width);
+   margin-inline: auto;
+   margin-block: 0;
+}
+
 .center-figure {
-   margin-block: 1rem;
+   --block-offset: 1rem;
+   --inline-offset: 0;
+   margin: var(--block-offset) var(--inline-offset);
 }
 
 /*=*/
@@ -131,16 +144,6 @@ figure > img {
    color: var(--primary-100);
 }
 
-.main-item figure {
-   display: grid;
-   place-items: center;
-   margin-block: 1rem .5rem;
-
-   & img {
-      max-width: 70%;
-   }
-}
-
 .bento__wrapper:has(.bottom-overflow) {
    aspect-ratio: 16/12;
    overflow: hidden;
@@ -154,4 +157,16 @@ figure > img {
 .social-media__wrapper .bento-wrapper__tooltip {
    font-size: .9rem;
    font-weight: var(--fw-200);
+}
+
+.audience-growth__wrapper .bento-wrapper__title {
+   font-size: 2rem;
+   margin: 0;
+   margin-bottom: .5rem;
+}
+
+.audience-growth__wrapper span {
+   font-weight: var(--fw-200);
+   font-size: .9rem;
+   color: var(--neutral-300);
 }
