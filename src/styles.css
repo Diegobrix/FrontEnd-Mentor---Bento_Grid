@@ -69,12 +69,14 @@ span:not(:where(h1, h2, p, span)>span) {
 /* Generic Styles */
 
 .bento-container {
-   --rows: 1fr;
+   --columns: 1fr;
+   --rows: auto;
    --padding: 1rem;
    --gap: 2rem;
 
    display: grid;
-   grid-template-columns: var(--rows);
+   grid-template-columns: var(--columns);
+   grid-template-rows: var(--rows);
    grid-auto-flow: row;
    gap: var(--gap);
 
@@ -82,6 +84,7 @@ span:not(:where(h1, h2, p, span)>span) {
 }
 
 .bento__wrapper {
+   grid-area: var(--position);
    border-radius: 10px;
    background-color: var(--bg-colour);
 
@@ -117,7 +120,7 @@ span:not(:where(h1, h2, p, span)>span) {
 
 .variable-element {
    --width: 70%;
-   max-width: var(--width);
+   max-width: clamp(50px, var(--width), 200px);
    margin-inline: auto;
    margin-block: 0;
 }
@@ -190,4 +193,38 @@ span:not(:where(h1, h2, p, span)>span) {
    font-size: inherit;
    color: var(--colour);
    font-style: italic;
+}
+
+@media screen and (min-width: 90rem) {   
+   .bento-container {
+      --columns: repeat(4, 1fr);
+      --rows: 20fr 3fr 10fr 10fr; 
+
+      max-width: 65vw;
+      height: 100vh;
+
+      margin: auto;
+      grid-template-areas: "a b b c"
+                           "a d e c"
+                           "f d e c"
+                           "f g h h";
+      gap: 1rem;
+   }
+
+   .bento__wrapper {   
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    
+      width: 100%;
+      height: 100%;
+   }
+
+   .grow-followers__wrapper {
+      flex-direction: row;
+
+      & figure {
+         --block-offset: 0!important;
+      }
+   }
 }
